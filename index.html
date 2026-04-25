@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>【正直レビュー】AI維新Writerを使ってみた感想｜半自動から完全自動へ</title>
-<meta name="description" content="WordPress自動投稿ツール「AI維新Writer」を実際に使った正直レビュー。料金プラン比較、メリット・デメリット、こんな人におすすめなど、ブロガー目線で詳しく解説します。">
+<title>【正直レビュー】AI維新Writerを楽天トラベルで5記事試した感想｜GPTsからの乗り換え検証</title>
+<meta name="description" content="WordPress自動投稿ツール「AI維新Writer」を実際に楽天トラベルで5記事生成して検証。ChatGPT（GPTs）を使っていた頃と何が変わったか、1記事の作業時間がどう変わったかを正直にレビューします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
@@ -13,9 +13,9 @@
     --color-bg: #fafaf7;
     --color-text: #2c2c2c;
     --color-text-soft: #555;
-    --color-accent: #d97706;       /* 温かみのあるオレンジ */
+    --color-accent: #d97706;
     --color-accent-soft: #fef3c7;
-    --color-primary: #1e3a5f;      /* 信頼感のある紺 */
+    --color-primary: #1e3a5f;
     --color-primary-soft: #e8eef5;
     --color-success: #15803d;
     --color-success-soft: #dcfce7;
@@ -33,14 +33,13 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Noto Sans JP', -apple-system, sans-serif;
     background: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.85;
+    line-height: 1.95;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
   }
@@ -55,7 +54,7 @@
   .hero {
     background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
     color: #fff;
-    padding: 60px 20px 50px;
+    padding: 56px 20px 44px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -69,22 +68,21 @@
       radial-gradient(circle at 80% 80%, rgba(217,119,6,0.15) 0%, transparent 40%);
     pointer-events: none;
   }
-  .hero-badge {
+  .hero-meta-top {
     display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 6px 16px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 5px 14px;
     border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 20px;
+    font-size: 12px;
+    margin-bottom: 18px;
     letter-spacing: 0.05em;
   }
   .hero h1 {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(24px, 5vw, 34px);
+    font-size: clamp(22px, 4.6vw, 30px);
     font-weight: 700;
-    line-height: 1.5;
+    line-height: 1.55;
     margin-bottom: 18px;
     position: relative;
   }
@@ -92,22 +90,22 @@
     color: #fbbf24;
   }
   .hero-sub {
-    font-size: 15px;
-    opacity: 0.92;
-    line-height: 1.8;
+    font-size: 14.5px;
+    opacity: 0.9;
+    line-height: 1.85;
     max-width: 600px;
     margin: 0 auto;
   }
-  .hero-meta {
-    margin-top: 28px;
-    font-size: 13px;
-    opacity: 0.75;
+  .hero-byline {
+    margin-top: 26px;
+    font-size: 12px;
+    opacity: 0.7;
     letter-spacing: 0.05em;
   }
 
   /* ========== セクション ========== */
   section {
-    padding: 50px 0;
+    padding: 48px 0;
   }
   section:nth-child(even) {
     background: #fff;
@@ -115,109 +113,182 @@
 
   .section-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(22px, 4.5vw, 28px);
+    font-size: clamp(20px, 4vw, 26px);
     font-weight: 700;
-    text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
     color: var(--color-primary);
-    line-height: 1.4;
-  }
-  .section-title::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: var(--color-accent);
-    margin: 0 auto 20px;
-  }
-  .section-lead {
-    text-align: center;
-    color: var(--color-text-soft);
-    margin-bottom: 36px;
-    font-size: 15px;
+    line-height: 1.5;
+    border-left: 5px solid var(--color-accent);
+    padding-left: 14px;
   }
 
-  /* ========== 結論ボックス ========== */
-  .conclusion-box {
-    background: linear-gradient(180deg, #fff8e1 0%, #fef3c7 100%);
-    border: 2px solid var(--color-accent);
-    border-radius: var(--radius-md);
-    padding: 28px 24px;
-    margin: 30px 0;
-    position: relative;
+  /* ========== コンテンツ ========== */
+  .content p {
+    margin-bottom: 16px;
+    line-height: 1.95;
   }
-  .conclusion-box::before {
-    content: '結論';
-    position: absolute;
-    top: -14px;
-    left: 24px;
-    background: var(--color-accent);
-    color: #fff;
-    padding: 4px 14px;
-    border-radius: 100px;
+  .content h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    color: var(--color-primary);
+    margin: 30px 0 14px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 2px dotted var(--color-border);
+  }
+  .content h4 {
+    font-size: 16px;
+    color: var(--color-primary);
+    margin: 24px 0 12px;
+    font-weight: 700;
+  }
+  .content strong {
+    background: linear-gradient(transparent 65%, var(--color-accent-soft) 65%);
+    font-weight: 700;
+    padding: 0 2px;
+  }
+
+  /* ========== テスト結果ボックス ========== */
+  .test-result {
+    background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+    border: 1px solid var(--color-border);
+    border-left: 5px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    margin: 24px 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .test-result-title {
     font-size: 13px;
+    color: var(--color-primary);
     font-weight: 700;
     letter-spacing: 0.1em;
-  }
-  .conclusion-box p {
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .conclusion-box p:last-child {
-    margin-bottom: 0;
-  }
-  .conclusion-box strong {
-    background: linear-gradient(transparent 60%, #fde68a 60%);
-    font-weight: 700;
-  }
-
-  /* ========== CTAボタン ========== */
-  .cta-wrapper {
-    text-align: center;
-    margin: 32px 0 8px;
-  }
-  .cta-button {
-    display: inline-block;
-    background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
-    color: #fff;
-    text-decoration: none;
-    padding: 18px 40px;
-    border-radius: 100px;
-    font-weight: 700;
+  .test-result-title::before {
+    content: '🔬';
     font-size: 16px;
-    box-shadow: 0 6px 20px rgba(217,119,6,0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    max-width: 90%;
   }
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(217,119,6,0.45);
+  .test-result h4 {
+    margin-top: 0 !important;
+    font-size: 17px !important;
   }
-  .cta-note {
-    display: block;
-    font-size: 12px;
-    color: var(--color-text-soft);
-    margin-top: 12px;
+  .test-result ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+  .test-result li {
+    padding: 4px 0;
+    font-size: 14.5px;
+  }
+  .test-result li::before {
+    content: '・';
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-right: 4px;
   }
 
-  /* ========== ふきだし（SWELL風）========== */
+  /* ========== 比較ボックス ========== */
+  .vs-box {
+    margin: 24px 0;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #fff;
+  }
+  .vs-header {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 12px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    align-items: stretch;
+  }
+  @media (max-width: 600px) {
+    .vs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .vs-side {
+    padding: 20px 18px;
+  }
+  .vs-side.before {
+    background: #fafafa;
+  }
+  .vs-side.after {
+    background: #fff8e1;
+  }
+  .vs-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    color: var(--color-text-soft);
+  }
+  .vs-side.after .vs-label {
+    color: var(--color-accent);
+  }
+  .vs-tool {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--color-primary);
+  }
+  .vs-detail {
+    font-size: 13px;
+    color: var(--color-text-soft);
+    line-height: 1.7;
+  }
+  .vs-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  @media (max-width: 600px) {
+    .vs-arrow {
+      padding: 8px;
+      font-size: 18px;
+    }
+    .vs-arrow::after { content: '↓'; }
+    .vs-arrow > span { display: none; }
+  }
+  @media (min-width: 601px) {
+    .vs-arrow::after { content: '→'; }
+    .vs-arrow > span { display: none; }
+  }
+
+  /* ========== ふきだし ========== */
   .speech {
     display: flex;
     gap: 14px;
     align-items: flex-start;
-    margin: 24px 0;
+    margin: 22px 0;
   }
   .speech-icon {
     flex-shrink: 0;
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: var(--color-primary);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     text-align: center;
     line-height: 1.3;
@@ -226,47 +297,75 @@
     flex: 1;
     background: var(--color-primary-soft);
     border-radius: var(--radius-md);
-    padding: 16px 18px;
+    padding: 14px 16px;
     position: relative;
-    font-size: 15px;
+    font-size: 14.5px;
+    line-height: 1.8;
   }
   .speech-bubble::before {
     content: '';
     position: absolute;
     left: -8px;
-    top: 20px;
+    top: 18px;
     border: 8px solid transparent;
     border-right-color: var(--color-primary-soft);
   }
 
-  /* ========== 体験ストーリー ========== */
-  .story-card {
+  /* ========== 評価ボックス（星と項目） ========== */
+  .verdict-card {
     background: #fff;
-    border-left: 4px solid var(--color-accent);
-    padding: 22px 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 22px;
     margin: 20px 0;
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
     box-shadow: var(--shadow-sm);
   }
-  .story-card h3 {
-    font-size: 17px;
-    color: var(--color-primary);
-    margin-bottom: 10px;
+  .verdict-row {
+    display: grid;
+    grid-template-columns: 130px 100px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--color-border);
+    font-size: 14px;
+  }
+  .verdict-row:last-child {
+    border-bottom: none;
+  }
+  @media (max-width: 600px) {
+    .verdict-row {
+      grid-template-columns: 110px 90px 1fr;
+      gap: 8px;
+      font-size: 13px;
+    }
+  }
+  .verdict-label {
     font-weight: 700;
+    color: var(--color-primary);
+  }
+  .verdict-stars {
+    color: var(--color-accent);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+  .verdict-comment {
+    color: var(--color-text-soft);
+    font-size: 13.5px;
+    line-height: 1.7;
   }
 
-  /* ========== メリット・デメリットボックス ========== */
+  /* ========== メリット・デメリット ========== */
   .pros-cons {
     display: grid;
-    gap: 20px;
-    margin: 24px 0;
+    gap: 16px;
+    margin: 20px 0;
   }
   @media (min-width: 700px) {
     .pros-cons { grid-template-columns: 1fr 1fr; }
   }
   .pc-box {
     border-radius: var(--radius-md);
-    padding: 22px 22px 22px 22px;
+    padding: 20px;
     box-shadow: var(--shadow-sm);
   }
   .pc-box.pros {
@@ -278,12 +377,11 @@
     border: 1px solid #fca5a5;
   }
   .pc-box h3 {
-    font-size: 17px;
-    margin-bottom: 14px;
+    font-size: 16px;
+    margin-bottom: 12px;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    border: none !important;
+    padding: 0 !important;
   }
   .pc-box.pros h3 { color: var(--color-success); }
   .pc-box.cons h3 { color: var(--color-danger); }
@@ -292,9 +390,9 @@
     padding: 0;
   }
   .pc-box li {
-    padding: 6px 0 6px 24px;
+    padding: 5px 0 5px 22px;
     position: relative;
-    font-size: 14.5px;
+    font-size: 14px;
     line-height: 1.7;
   }
   .pc-box.pros li::before {
@@ -312,174 +410,61 @@
     font-weight: 700;
   }
 
-  /* ========== 料金プラン ========== */
-  .pricing-grid {
-    display: grid;
-    gap: 18px;
-    margin: 24px 0;
+  /* ========== 引用風の備考 ========== */
+  .note-quote {
+    background: var(--color-highlight);
+    border-left: 4px solid #f59e0b;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: 14.5px;
   }
-  @media (min-width: 700px) {
-    .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+  .note-quote strong {
+    color: #92400e;
   }
-  .plan-card {
-    background: #fff;
-    border: 2px solid var(--color-border);
+
+  /* ========== 警告 ========== */
+  .warning-box {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
     border-radius: var(--radius-md);
-    padding: 24px 20px;
-    position: relative;
-    transition: transform 0.2s;
+    padding: 18px 20px;
+    margin: 20px 0;
+    font-size: 14.5px;
   }
-  .plan-card.recommended {
-    border-color: var(--color-accent);
-    box-shadow: 0 8px 24px rgba(217,119,6,0.15);
-    transform: scale(1.02);
-  }
-  .plan-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-accent);
-    color: #fff;
-    padding: 4px 14px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-  .plan-name {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-primary);
+  .warning-box strong {
+    color: #c2410c;
+    display: block;
     margin-bottom: 6px;
   }
-  .plan-target {
+
+  /* ========== CTAボタン（最後だけ） ========== */
+  .cta-wrapper {
+    text-align: center;
+    margin: 32px 0 8px;
+  }
+  .cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 6px 20px rgba(217,119,6,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    max-width: 90%;
+  }
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(217,119,6,0.45);
+  }
+  .cta-note {
+    display: block;
     font-size: 12px;
     color: var(--color-text-soft);
-    margin-bottom: 14px;
-  }
-  .plan-price {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: 4px;
-  }
-  .plan-price small {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-text-soft);
-  }
-  .plan-features {
-    list-style: none;
-    padding: 16px 0 0;
-    border-top: 1px solid var(--color-border);
-    margin-top: 14px;
-  }
-  .plan-features li {
-    padding: 5px 0 5px 22px;
-    position: relative;
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .plan-features li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-    font-weight: 700;
-  }
-
-  /* ========== 比較表 ========== */
-  .comparison-wrap {
-    overflow-x: auto;
-    margin: 20px 0;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-  }
-  .comparison-table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-    background: #fff;
-    font-size: 14px;
-  }
-  .comparison-table th, .comparison-table td {
-    padding: 12px 14px;
-    text-align: left;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .comparison-table thead th {
-    background: var(--color-primary);
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-  }
-  .comparison-table thead th.highlight {
-    background: var(--color-accent);
-  }
-  .comparison-table tbody tr:nth-child(even) {
-    background: #fafafa;
-  }
-  .comparison-table td.highlight {
-    background: var(--color-accent-soft);
-    font-weight: 700;
-    color: var(--color-primary);
-  }
-  .comparison-table td:first-child {
-    font-weight: 500;
-    color: var(--color-text-soft);
-  }
-
-  /* ========== おすすめ・おすすめしない ========== */
-  .recommend-grid {
-    display: grid;
-    gap: 18px;
-    margin: 24px 0;
-  }
-  @media (min-width: 700px) {
-    .recommend-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .recommend-box {
-    background: #fff;
-    border-radius: var(--radius-md);
-    padding: 24px;
-    box-shadow: var(--shadow-sm);
-  }
-  .recommend-box h3 {
-    font-size: 18px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid;
-    font-weight: 700;
-  }
-  .recommend-box.yes h3 {
-    color: var(--color-accent);
-    border-color: var(--color-accent);
-  }
-  .recommend-box.no h3 {
-    color: #6b7280;
-    border-color: #6b7280;
-  }
-  .recommend-box ul {
-    list-style: none;
-    padding: 0;
-  }
-  .recommend-box li {
-    padding: 8px 0 8px 26px;
-    position: relative;
-    font-size: 14.5px;
-    line-height: 1.7;
-  }
-  .recommend-box.yes li::before {
-    content: '👉';
-    position: absolute;
-    left: 0;
-  }
-  .recommend-box.no li::before {
-    content: '🤔';
-    position: absolute;
-    left: 0;
+    margin-top: 12px;
   }
 
   /* ========== FAQ ========== */
@@ -487,23 +472,23 @@
     background: #fff;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     overflow: hidden;
   }
   .faq-item summary {
-    padding: 16px 50px 16px 50px;
+    padding: 14px 50px 14px 50px;
     cursor: pointer;
     font-weight: 500;
     position: relative;
     list-style: none;
-    font-size: 15px;
+    font-size: 14.5px;
   }
   .faq-item summary::-webkit-details-marker { display: none; }
   .faq-item summary::before {
     content: 'Q';
     position: absolute;
-    left: 16px;
-    top: 16px;
+    left: 14px;
+    top: 14px;
     background: var(--color-primary);
     color: #fff;
     width: 24px;
@@ -530,14 +515,14 @@
   }
   .faq-answer {
     padding: 0 20px 18px 50px;
-    font-size: 14.5px;
+    font-size: 14px;
     color: var(--color-text-soft);
     position: relative;
   }
   .faq-answer::before {
     content: 'A';
     position: absolute;
-    left: 16px;
+    left: 14px;
     top: 0;
     background: var(--color-accent);
     color: #fff;
@@ -551,79 +536,54 @@
     font-weight: 700;
   }
 
-  /* ========== ハイライトボックス ========== */
-  .highlight-box {
-    background: var(--color-highlight);
-    border-radius: var(--radius-md);
-    padding: 20px 22px;
-    margin: 24px 0;
-    border-left: 4px solid #f59e0b;
-  }
-  .highlight-box strong {
-    color: #92400e;
-  }
-
-  /* ========== セクション内テキスト ========== */
-  .content p {
-    margin-bottom: 16px;
-    line-height: 1.95;
-  }
-  .content h3 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 19px;
-    color: var(--color-primary);
-    margin: 28px 0 14px;
-    font-weight: 700;
-    padding-left: 12px;
-    border-left: 4px solid var(--color-accent);
-  }
-  .content strong {
-    background: linear-gradient(transparent 65%, var(--color-accent-soft) 65%);
-    font-weight: 700;
-    padding: 0 2px;
-  }
-
-  /* ========== 警告ボックス ========== */
-  .warning-box {
-    background: #fff7ed;
-    border: 1px solid #fed7aa;
-    border-radius: var(--radius-md);
-    padding: 18px 20px;
-    margin: 20px 0;
-    font-size: 14.5px;
-  }
-  .warning-box strong {
-    color: #c2410c;
-    display: block;
-    margin-bottom: 6px;
-  }
-
-  /* ========== 数字ハイライト ========== */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 24px 0;
-  }
-  .stat-item {
-    text-align: center;
+  /* ========== 目次 ========== */
+  .toc {
     background: #fff;
-    padding: 18px 8px;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    padding: 20px 24px;
+    margin: 24px 0;
   }
-  .stat-num {
-    font-family: 'Noto Serif JP', serif;
-    font-size: clamp(20px, 5vw, 28px);
+  .toc-title {
+    font-size: 13px;
     font-weight: 700;
-    color: var(--color-accent);
-    line-height: 1.2;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
   }
-  .stat-label {
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: toc-counter;
+  }
+  .toc li {
+    counter-increment: toc-counter;
+    padding: 6px 0 6px 28px;
+    position: relative;
+    font-size: 14px;
+  }
+  .toc li::before {
+    content: counter(toc-counter);
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 11px;
-    color: var(--color-text-soft);
-    margin-top: 4px;
-    line-height: 1.4;
+    font-weight: 700;
+  }
+  .toc a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .toc a:hover {
+    color: var(--color-accent);
   }
 
   /* ========== フッター ========== */
@@ -642,14 +602,12 @@
     font-size: 11px;
     opacity: 0.6;
     margin-top: 12px;
+    line-height: 1.7;
   }
 
-  /* ========== モバイル微調整 ========== */
   @media (max-width: 600px) {
     section { padding: 40px 0; }
-    .hero { padding: 50px 20px 40px; }
-    .speech-icon { width: 52px; height: 52px; font-size: 11px; }
-    .stat-item { padding: 14px 4px; }
+    .hero { padding: 48px 20px 38px; }
   }
 </style>
 </head>
@@ -658,399 +616,407 @@
 <!-- ===== ヒーロー ===== -->
 <header class="hero">
   <div class="container">
-    <span class="hero-badge">⏱ 2026年最新版・実体験レビュー</span>
-    <h1>キーワードを入れるだけで<br>WordPressに<span class="accent">自動投稿</span>される時代<br>—— 「AI維新Writer」を使ってみた</h1>
-    <p class="hero-sub">ブログ歴7年・複数サイト運営中の私が、モニター期間から半年使い込んだ正直レビュー。SWELLユーザーには本気でおすすめできる理由を、メリットも欠点もすべて書きました。</p>
-    <p class="hero-meta">執筆：まっぽん（ブログ歴7年・元会社員ブロガー）</p>
+    <span class="hero-meta-top">⏱ 半年使用｜実体験レビュー</span>
+    <h1>ChatGPTで1記事1時間かかってた私が、<br><span class="accent">「AI維新Writer」で5分</span>に短縮できた話</h1>
+    <p class="hero-sub">楽天トラベル系の記事を実際に5本生成して検証。Xで見かけて半信半疑で試したのが半年前。GPTsで書いていた頃と何が変わったかを、数字も交えて正直に書きます。</p>
+    <p class="hero-byline">執筆：まっぽん（ブログ歴7年・複数サイト運営）</p>
   </div>
 </header>
 
-<!-- ===== 結論先出し ===== -->
+
+<!-- ===== 目次 ===== -->
 <section>
   <div class="container">
-    <h2 class="section-title">最初に結論</h2>
-
-    <div class="conclusion-box">
-      <p><strong>SWELLを使っている方なら、買って損はないと思います。</strong></p>
-      <p>キーワードを入れるだけで、競合分析から本文生成、画像、WordPressへの投稿まで全部自動。今まで外注に1記事3,000円払っていた作業が、API料金だけなら<strong>1記事5円～60円</strong>で済むようになりました。</p>
-      <p>ただし、<strong>SWELL以外のテーマでは表示崩れが起きる可能性</strong>があるので、そこだけは事前に知っておいてほしいです。</p>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-num">10分</div>
-        <div class="stat-label">1記事あたりの<br>作業時間</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">¥980〜</div>
-        <div class="stat-label">月額料金<br>（先着200名）</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">最大1/100</div>
-        <div class="stat-label">外注比の<br>コスト</div>
-      </div>
-    </div>
-
-    <div class="cta-wrapper">
-      <a href="https://ai-ishin-writer.com/lp?ref=6mjd9284" class="cta-button" target="_blank" rel="noopener">
-        まずは7日間 無料で試してみる →
-      </a>
-      <span class="cta-note">クレカ不要 / 5記事まで全機能使える / いつでも解約OK</span>
+    <div class="toc">
+      <div class="toc-title">CONTENTS</div>
+      <ol>
+        <li><a href="#intro">きっかけはXで見かけたこと</a></li>
+        <li><a href="#test">楽天トラベル5記事で検証してみた</a></li>
+        <li><a href="#vs-gpts">GPTsを使っていた頃と何が変わったか</a></li>
+        <li><a href="#verdict">機能ごとの評価</a></li>
+        <li><a href="#pros-cons">使ってわかった良いところ・気になるところ</a></li>
+        <li><a href="#for-who">どんな人に向いているか</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#summary">まとめ</a></li>
+      </ol>
     </div>
   </div>
 </section>
 
-<!-- ===== AI維新Writerとは ===== -->
-<section>
+
+<!-- ===== きっかけ ===== -->
+<section id="intro">
   <div class="container content">
-    <h2 class="section-title">AI維新Writerって何ができるの？</h2>
-    <p class="section-lead">3行でいうとこういうツールです</p>
+    <h2 class="section-title">きっかけはXで見かけたこと</h2>
 
-    <p>AI維新Writerは、ひとことでいうと<strong>「WordPress自動投稿ができるAIライティングサービス」</strong>です。</p>
+    <p>AI維新Writerを知ったのは、<strong>Xで流れてきた投稿</strong>がきっかけでした。</p>
 
-    <p>これまでも「AIで記事を書く」サービスはたくさんありました。でも多くは、AIが書いた文章をコピペして、画像を別で用意して、自分でWordPressに貼って…という作業が必要だったんですよね。</p>
+    <p>当時の私は、ChatGPTのGPTs（カスタムGPT）で記事を書いて、それをWordPressにコピペするという運営をしていました。</p>
 
-    <p>AI維新Writerが面白いのは、<strong>そこを丸ごと自動化してしまった</strong>ところです。</p>
+    <p>正直、それでも「自分で全部書く」よりは何倍もラクだったので、そこそこ満足していたんです。</p>
 
-    <h3>キーワードを入れるだけ。あとは待つだけ。</h3>
+    <p>ただ、Xで「<strong>キーワードを入れるだけでWordPressに自動投稿される</strong>」という言葉を見たときに、ちょっと引っかかりました。</p>
 
-    <p>具体的には、こんな流れで記事ができあがります。</p>
-
-    <div class="speech">
-      <div class="speech-icon">維新<br>Writer</div>
-      <div class="speech-bubble">
-        ① 競合上位10記事を分析<br>
-        ② 構成・見出しをAIが設計<br>
-        ③ リード文〜本文〜まとめまで生成<br>
-        ④ アイキャッチ・図解画像も自動生成<br>
-        ⑤ Gutenberg形式でWordPressに自動投稿
-      </div>
-    </div>
-
-    <p>これが、キーワードを入れて「生成開始」を押したあと、<strong>全部勝手に進みます</strong>。私はその間、別のブログの記事を書いたり、子どもと遊んだりしています。</p>
-  </div>
-</section>
-
-<!-- ===== 実体験 ===== -->
-<section>
-  <div class="container content">
-    <h2 class="section-title">実際に使ってみてどうだったか</h2>
-    <p class="section-lead">モニター期間から使い込んでわかったリアル</p>
-
-    <div class="story-card">
-      <h3>1．ブログ作業の時間が、本当に減りました</h3>
-      <p>私はメインブログを半自動投稿、地域系のブログは外注さん、楽天アフィリ用のサブブログも半自動…という運営をしていました。</p>
-      <p>そこに「完全自動」のAI維新Writerが入ったことで、<strong>記事を書く・入稿する・投稿するという作業が、ほぼゼロになった</strong>んです。</p>
-      <p>最初に半自動投稿を始めたときも「楽になったな」と感じていたんですが、完全自動はその比じゃないですね。</p>
-    </div>
-
-    <div class="story-card">
-      <h3>2．外注費との差が、シンプルにすごい</h3>
-      <p>これまで外注さんに「WordPressへの投稿込み」でお願いすると、1記事1,500〜3,000円はかかっていました。50記事だと7.5万〜15万円です。</p>
-      <p>AI維新WriterのProプラン（月2,980円）+ フル画像50記事のAPI料金は、合計でも<strong>月7,000円前後</strong>。</p>
-      <p>これは正直、計算するたびに「本当にいいのかな？」と心配になります。</p>
-    </div>
-
-    <div class="story-card">
-      <h3>3．ナレッジ機能で「自分らしさ」が出せる</h3>
-      <p>Proプラン以上で使える「ナレッジファイル」が、地味にすごいです。</p>
-      <p>過去記事や執筆ルールをAIに学習させると、<strong>自分の文体やトンマナをある程度踏襲してくれる</strong>。AI記事にありがちな「いかにもAI」っぽさを抑えられるのが助かります。</p>
-    </div>
+    <p>「自動投稿」というワードに半信半疑だったというのが正直なところです。文章だけじゃなく、画像や投稿作業まで含めて自動化なんて本当にできるの？と。</p>
 
     <div class="speech">
       <div class="speech-icon">まっぽん</div>
       <div class="speech-bubble">
-        昔は「まずは1サイト集中」って言われてましたけど、それって人力で回す前提だったんですよね。今は自動化できるので、複数サイトを最初から運営するのが普通になってきています。
+        モニターで使えるという話だったので、「ダメ元で試してみよう」くらいの気持ちで触り始めたのが半年前です。
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== メリット・デメリット ===== -->
-<section>
-  <div class="container content">
-    <h2 class="section-title">メリットとデメリット</h2>
-    <p class="section-lead">いいところも、注意すべきところも、正直に</p>
 
-    <div class="pros-cons">
-      <div class="pc-box pros">
-        <h3>👍 メリット</h3>
-        <ul>
-          <li>キーワード入力だけで、本文・画像・投稿まで全自動</li>
-          <li>SWELLのふきだし・ボタン等の装飾に完全対応</li>
-          <li>Proなら検索順位・アフィリ計測まで内蔵</li>
-          <li>ナレッジ機能で「自分らしい文体」を学習できる</li>
-          <li>外注費と比べると圧倒的に安い（最大1/100）</li>
-          <li>WordPress接続代行が無料で受けられる（有料プラン）</li>
-          <li>LINEサポートあり（Pro/Businessは優先対応）</li>
-          <li>未使用記事数は翌月に繰越できる</li>
-          <li>7日間・5記事の無料トライアル（クレカ不要）</li>
-        </ul>
+<!-- ===== 検証 ===== -->
+<section id="test">
+  <div class="container content">
+    <h2 class="section-title">楽天トラベル5記事で検証してみた</h2>
+
+    <p>最初に試したのは<strong>楽天トラベル系のキーワード</strong>でした。</p>
+
+    <p>もともと「グルメ×旅行」のブログをやっていて、楽天で収益化もできていたジャンルなので、<strong>すでに自分で書いた記事との比較</strong>がしやすかったんです。</p>
+
+    <div class="test-result">
+      <div class="test-result-title">検証メモ</div>
+      <h4>楽天トラベル × 5記事の生成テスト</h4>
+      <ul>
+        <li>ジャンル：楽天トラベル系（旅行・宿泊）</li>
+        <li>記事数：5記事</li>
+        <li>使用プラン：モニター → 現在はProプラン</li>
+        <li>テーマ：SWELL</li>
+        <li>検証期間：モニター開始時</li>
+      </ul>
+    </div>
+
+    <h3>結論：そのまま公開できる質だった</h3>
+
+    <p>5記事を生成して、いちばん驚いたのが<strong>記事の質</strong>でした。</p>
+
+    <p>正直、最初は「AIが自動投稿するんだから、ある程度は手直し必須だろう」と思っていました。GPTsで書いた記事も、毎回それなりに手を入れていたので。</p>
+
+    <p>でも実際に出てきた5記事は、<strong>そのまま公開できる質</strong>だったんです。</p>
+
+    <p>もちろん、最終チェックはしますし、自分のブログのトーンに合わせて微調整したりはします。でも、「まるごと書き直す必要がある」みたいなレベルではありませんでした。</p>
+
+    <h3>楽天アフィリリンクの自動挿入が便利だった</h3>
+
+    <p>楽天トラベル系を試したからこそ実感できたのが、<strong>アフィリエイトリンク自動挿入機能</strong>です。</p>
+
+    <p>楽天トラベル・楽天市場のアフィリエイトIDを設定しておくと、記事内に出てくるホテル名や商品名に対して、自動でリンクと情報カードを挿入してくれます。</p>
+
+    <p>GPTsだとここを手作業でやっていたので、地味にいちばん時間がかかっていた部分でした。それが自動化されるのは、楽天系ブロガーとしてはかなり助かりました。</p>
+
+    <div class="note-quote">
+      <strong>💡 補足：楽天系ブロガー視点で</strong>
+      <p style="margin-top:6px">楽天系の記事は、ホテル名・施設名・商品名が頻繁に出てきます。これに毎回リンクを貼るのが手作業だと本当に面倒なんですよね。自動挿入の便利さは、楽天系をやっている方ほど刺さると思います。</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== GPTsとの比較 ===== -->
+<section id="vs-gpts">
+  <div class="container content">
+    <h2 class="section-title">GPTsを使っていた頃と何が変わったか</h2>
+
+    <p>これがいちばんレビューとして書きたかったところです。</p>
+
+    <p>「AI維新WriterのほうがChatGPTより便利」というのは公式LPにも書いてある話なんですが、<strong>実際に両方使ったうえで何がどう違うのか</strong>を、数字を交えて書いていきます。</p>
+
+    <h3>作業時間：1記事1時間 → 5分</h3>
+
+    <div class="vs-box">
+      <div class="vs-header">1記事あたりの作業時間</div>
+      <div class="vs-grid">
+        <div class="vs-side before">
+          <div class="vs-label">BEFORE</div>
+          <div class="vs-tool">ChatGPT（GPTs）</div>
+          <div class="vs-detail">
+            約 <strong style="color:#1e3a5f;font-size:18px">1時間</strong> / 記事<br>
+            プロンプト調整 → 生成 → コピペ → 画像作成 → WordPress入稿 → 装飾調整
+          </div>
+        </div>
+        <div class="vs-arrow"><span>→</span></div>
+        <div class="vs-side after">
+          <div class="vs-label">AFTER</div>
+          <div class="vs-tool">AI維新Writer</div>
+          <div class="vs-detail">
+            約 <strong style="color:#d97706;font-size:18px">5分</strong> / 記事<br>
+            キーワードを入れて生成ボタンを押すだけ
+          </div>
+        </div>
       </div>
-      <div class="pc-box cons">
-        <h3>👎 デメリット</h3>
-        <ul>
-          <li>SWELL以外のテーマだと表示が崩れる可能性</li>
-          <li>Gemini APIキーは自分で取得する必要がある（3分で完了）</li>
-          <li>API料金は別途かかる（1記事5〜100円）</li>
-          <li>記事の最終確認は自分でやったほうがいい</li>
-          <li>Starterプランだと画像はアイキャッチのみ</li>
-          <li>キーワード設計や記事品質の調整は自分の責任</li>
-        </ul>
+    </div>
+
+    <p>これが、いちばん体感が変わった部分です。</p>
+
+    <p>1時間が5分というのは、単純計算で<strong>12分の1</strong>。ただ、これは「ボタンを押してから完了するまで」ではなく、<strong>私が実際に手を動かして作業している時間</strong>のことです。</p>
+
+    <p>AI維新Writerはバックグラウンドで処理が走るので、生成中に別のことができるんですよね。記事ができあがる時間そのものはもちろんかかるんですが、私の手が空いているのでノーカウントです。</p>
+
+    <h3>具体的に何が削れたのか</h3>
+
+    <p>GPTsの「1時間」を分解すると、こうなります。</p>
+
+    <ul style="list-style:none;padding:0;margin:18px 0">
+      <li style="padding:6px 0;border-bottom:1px dotted #ddd">📝 プロンプトを調整して投げる：<strong>10分</strong></li>
+      <li style="padding:6px 0;border-bottom:1px dotted #ddd">📑 出力をコピーして整形：<strong>10分</strong></li>
+      <li style="padding:6px 0;border-bottom:1px dotted #ddd">🖼 アイキャッチや図解を別ツールで作る：<strong>15分</strong></li>
+      <li style="padding:6px 0;border-bottom:1px dotted #ddd">📤 WordPressに貼り付け＆装飾：<strong>15分</strong></li>
+      <li style="padding:6px 0;border-bottom:1px dotted #ddd">🔗 アフィリリンクを手動で挿入：<strong>10分</strong></li>
+    </ul>
+
+    <p>このうち、AI維新Writerに変えてからは、<strong>キーワード入力以外がほぼゼロになりました</strong>。画像も自動、装飾もSWELL対応、リンクも自動挿入なので、本当にやることがなくなったんです。</p>
+
+    <h3>記事の質はどうか？</h3>
+
+    <p>これは正直に書きますが、<strong>記事の質はGPTsと同等か、やや上</strong>くらいの感覚です。</p>
+
+    <p>「AI維新Writerのほうが圧倒的にすごい！」と言うつもりはありません。GPTsでもプロンプトを練れば、近いレベルの記事は書けます。</p>
+
+    <p>ただ、AI維新Writerが優れているのは、<strong>競合分析→構成設計→本文生成までを毎回フルでやってくれる</strong>こと。GPTsでこれを再現しようとすると、毎回プロンプトを工夫する必要があります。</p>
+
+    <p>「毎回安定して、ある程度の質の記事が出てくる」という意味では、こちらのほうが運用ラクだと感じています。</p>
+  </div>
+</section>
+
+
+<!-- ===== 機能ごとの評価 ===== -->
+<section id="verdict">
+  <div class="container content">
+    <h2 class="section-title">機能ごとの評価</h2>
+
+    <p>半年使って、機能ごとの感想を5段階で評価しました。</p>
+
+    <div class="verdict-card">
+
+      <div class="verdict-row">
+        <div class="verdict-label">記事生成の質</div>
+        <div class="verdict-stars">★★★★☆</div>
+        <div class="verdict-comment">そのまま公開できる質。最終チェックは自分でやる前提。</div>
       </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">作業時間の短縮</div>
+        <div class="verdict-stars">★★★★★</div>
+        <div class="verdict-comment">1時間→5分は本当に。ここがいちばん満足ポイント。</div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">楽天アフィリ自動挿入</div>
+        <div class="verdict-stars">★★★★★</div>
+        <div class="verdict-comment">楽天系ブロガーには刺さる。リンク貼り作業がゼロに。</div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">SWELL装飾対応</div>
+        <div class="verdict-stars">★★★★★</div>
+        <div class="verdict-comment">ふきだし・ボタン等が自動で入る。SWELLユーザー必見。</div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">画像自動生成</div>
+        <div class="verdict-stars">★★★★☆</div>
+        <div class="verdict-comment">アイキャッチも図解も自動。たまに想定外の絵が出るが許容範囲。</div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">ナレッジ機能</div>
+        <div class="verdict-stars">★★★★☆</div>
+        <div class="verdict-comment">使えば使うほど自分の文体に近づく。仕込みは必要。</div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">管理画面の使いやすさ</div>
+        <div class="verdict-stars">★★★★☆</div>
+        <div class="verdict-comment">直感的に使える。バージョンアップも頻繁。</div>
+      </div>
+
+      <div class="verdict-row">
+        <div class="verdict-label">汎用テーマ対応</div>
+        <div class="verdict-stars">★★☆☆☆</div>
+        <div class="verdict-comment">SWELL以外のテーマだと装飾が崩れる可能性。要注意。</div>
+      </div>
+
     </div>
 
     <div class="warning-box">
-      <strong>⚠ SWELL以外を使っている方への注意</strong>
-      AI維新Writerの出力は、WordPressテーマ「SWELL」の仕様に最適化されています。他のテーマでも基本機能は使えますが、ふきだしや装飾ブロックは正しく表示されない可能性があります。新しく始めるブログをSWELLにして使う、という選び方が現実的だと思います。
+      <strong>⚠ SWELL以外のテーマを使っている方へ</strong>
+      AI維新Writerの出力は、SWELLの仕様に合わせて作られています。他のテーマだと、ふきだしや装飾ブロックが正しく表示されない可能性があります。SWELL以外をメインに使っている方は、<strong>新しく始めるブログ専用にSWELLを入れて使う</strong>のが現実的だと思います。
     </div>
   </div>
 </section>
 
-<!-- ===== 料金プラン ===== -->
-<section>
+
+<!-- ===== メリット・デメリット ===== -->
+<section id="pros-cons">
   <div class="container content">
-    <h2 class="section-title">料金プラン比較</h2>
-    <p class="section-lead">先着200名限定の初期価格。今ならずっと据え置き</p>
+    <h2 class="section-title">使ってわかった良いところ・気になるところ</h2>
 
-    <div class="pricing-grid">
+    <p>絶賛だけのレビューは信用できないと思っているので、<strong>気になるところも正直に書きます</strong>。</p>
 
-      <div class="plan-card">
-        <div class="plan-name">Starter</div>
-        <div class="plan-target">週3〜4回投稿したい方</div>
-        <div class="plan-price">¥980<small>/月</small></div>
-        <ul class="plan-features">
-          <li>月15記事まで生成</li>
-          <li>WordPressサイト 1つ</li>
-          <li>ナレッジファイル 5つ</li>
-          <li>画像はアイキャッチのみ</li>
-          <li>WordPress接続代行つき</li>
-          <li>LINEサポート</li>
-        </ul>
-      </div>
-
-      <div class="plan-card recommended">
-        <span class="plan-badge">★ 私はこれ</span>
-        <div class="plan-name">Pro</div>
-        <div class="plan-target">毎日投稿・本格運用</div>
-        <div class="plan-price">¥2,980<small>/月</small></div>
-        <ul class="plan-features">
-          <li>月50記事まで生成</li>
-          <li>WordPressサイト 3つ</li>
-          <li>ナレッジファイル 20個</li>
-          <li>画像生成（アイキャッチ＋図解）</li>
-          <li>検索順位トラッキング</li>
-          <li>アフィリエイト分析</li>
-          <li>LINE優先サポート</li>
-        </ul>
-      </div>
-
-      <div class="plan-card">
-        <div class="plan-name">Business</div>
-        <div class="plan-target">複数サイト・代理店向け</div>
-        <div class="plan-price">¥9,800<small>/月</small></div>
-        <ul class="plan-features">
-          <li>月200記事まで生成</li>
-          <li>WordPressサイト 10個</li>
-          <li>ナレッジファイル 無制限</li>
-          <li>画像生成（フル機能）</li>
-          <li>検索順位トラッキング</li>
-          <li>アフィリエイト分析</li>
-          <li>LINE優先サポート</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="highlight-box">
-      <strong>💡 私がProプランを選んでいる理由</strong>
-      <p style="margin-top:8px">複数サイト運営できる（3サイト分）／ナレッジ20個で文体を細かく仕込める／アフィリエイトのクリック・CTRまで分析できる。この3つが揃っているのがProだけなんですよね。月2,980円ならランチ2回分くらいなので、迷わずProにしました。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 比較表 ===== -->
-<section>
-  <div class="container content">
-    <h2 class="section-title">他社AIライティングツールとの違い</h2>
-    <p class="section-lead">同じAI記事ツールでも、できることがかなり違います</p>
-
-    <div class="comparison-wrap">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="highlight">AI維新Writer<br><small style="font-weight:400">Pro</small></th>
-            <th>他社A</th>
-            <th>他社B</th>
-            <th>他社C</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>月額料金</td>
-            <td class="highlight">¥2,980</td>
-            <td>¥19,800</td>
-            <td>¥9,800</td>
-            <td>¥7,800</td>
-          </tr>
-          <tr>
-            <td>月間生成数</td>
-            <td class="highlight">50記事</td>
-            <td>50記事</td>
-            <td>30記事</td>
-            <td>20記事</td>
-          </tr>
-          <tr>
-            <td>WP自動投稿</td>
-            <td class="highlight">◎ 完全自動</td>
-            <td>× コピペ</td>
-            <td>△ 一部</td>
-            <td>× コピペ</td>
-          </tr>
-          <tr>
-            <td>競合分析→構成</td>
-            <td class="highlight">◎ 全自動</td>
-            <td>△ 手動</td>
-            <td>△ 有料</td>
-            <td>△ 手動</td>
-          </tr>
-          <tr>
-            <td>画像自動生成</td>
-            <td class="highlight">◎ 全種類</td>
-            <td>△ アイキャッチのみ</td>
-            <td>×</td>
-            <td>×</td>
-          </tr>
-          <tr>
-            <td>SWELL装飾対応</td>
-            <td class="highlight">◎ 完全対応</td>
-            <td>×</td>
-            <td>×</td>
-            <td>×</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p style="font-size:13px;color:var(--color-text-soft);margin-top:8px">※ 競合サービスは匿名化（公式LP「2026年4月時点の公開情報」より）</p>
-  </div>
-</section>
-
-<!-- ===== こんな人におすすめ ===== -->
-<section>
-  <div class="container content">
-    <h2 class="section-title">こんな人におすすめ／おすすめしない</h2>
-
-    <div class="recommend-grid">
-      <div class="recommend-box yes">
-        <h3>こんな人にはおすすめ</h3>
+    <div class="pros-cons">
+      <div class="pc-box pros">
+        <h3>使ってよかった点</h3>
         <ul>
-          <li>SWELLを使っている、これから使う予定の方</li>
-          <li>本業や育児で、ブログ作業の時間が取れない方</li>
-          <li>外注費を払っているけど、もっと効率化したい方</li>
-          <li>複数ブログを運営している、増やしたい方</li>
-          <li>記事を書くより、戦略や分析に時間を使いたい方</li>
-          <li>ライターさんへの発注・確認のやりとりが負担な方</li>
-          <li>AI記事に「自分らしさ」を出したい方</li>
+          <li>1記事5分で完了するので、空き時間で量産できる</li>
+          <li>楽天アフィリのリンク自動挿入が地味にすごい</li>
+          <li>SWELLのふきだし・装飾が自動で入る</li>
+          <li>記事の質が安定している（GPTsよりブレが少ない）</li>
+          <li>競合分析が毎回フルで走るので、SEO的に安心感がある</li>
+          <li>ナレッジ機能で自分の文体を覚えさせられる</li>
+          <li>管理画面が直感的で迷わない</li>
         </ul>
       </div>
-      <div class="recommend-box no">
-        <h3>こんな人にはおすすめしない</h3>
+      <div class="pc-box cons">
+        <h3>気になる点・注意点</h3>
         <ul>
-          <li>SWELL以外のテーマを使い続けたい方</li>
-          <li>1記事ずつ自分の言葉で丁寧に書きたい方</li>
-          <li>AIの記事に強い抵抗がある方</li>
-          <li>WordPressブログ自体を持っていない方</li>
-          <li>記事の最終チェックすら時間が取れない方</li>
+          <li>SWELL前提の設計なので、他テーマでは装飾が崩れる</li>
+          <li>Gemini APIキーは自分で取得する必要あり（3分で完了）</li>
+          <li>API料金が別途発生（1記事5〜100円）</li>
+          <li>たまに画像が想定と違うイメージで出てくる</li>
+          <li>キーワード設計のセンスは自分の責任</li>
+          <li>そのまま公開できるが、最終チェックは推奨</li>
         </ul>
       </div>
     </div>
+
+    <h3>「絶賛しすぎ」を避けたい理由</h3>
+
+    <p>このツール、本気でいいと思って紹介しているんですが、<strong>「全員にとって完璧」というツールは存在しない</strong>と思っています。</p>
+
+    <p>特にSWELL以外のテーマを使っている方には、正直そのままおすすめしにくいです。装飾が崩れるリスクがあるので。</p>
+
+    <p>逆に、SWELLユーザーで複数サイトを運営していて、楽天系もやっているような方には、これ以上ない相性だとも思います。</p>
 
     <div class="speech">
       <div class="speech-icon">まっぽん</div>
       <div class="speech-bubble">
-        全部を手作業で回すのって、やっぱりどこかで限界がきます。忙しいからこそ、仕組みで回せる部分を持っておくのは大事だなと、最近つくづく思います。
+        ツールに合わせて運営を変える、という発想もアリだと思っています。私自身、SWELLを使っているからこそ、このツールの恩恵を最大限受けられているので。
       </div>
     </div>
   </div>
 </section>
 
+
+<!-- ===== どんな人に向いているか ===== -->
+<section id="for-who">
+  <div class="container content">
+    <h2 class="section-title">どんな人に向いているか</h2>
+
+    <p>半年使ってみて、「<strong>こういう人に刺さる</strong>」と感じたパターンを書きます。</p>
+
+    <h3>👍 向いている人</h3>
+
+    <ul style="list-style:none;padding:0;margin:16px 0">
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#d97706;font-weight:700">1.</span>SWELLを使っている、または新規ブログでSWELLを使う予定の人</li>
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#d97706;font-weight:700">2.</span>楽天アフィリを中心にやっている人</li>
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#d97706;font-weight:700">3.</span>ChatGPT・GPTsで記事を書いていて、コピペ作業に疲れている人</li>
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#d97706;font-weight:700">4.</span>本業や育児でブログ作業の時間が取れない人</li>
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#d97706;font-weight:700">5.</span>外注に1記事3,000円以上払っている人</li>
+      <li style="padding:8px 0 8px 28px;position:relative"><span style="position:absolute;left:0;color:#d97706;font-weight:700">6.</span>複数サイトの運営を視野に入れている人</li>
+    </ul>
+
+    <h3>🤔 おすすめしないパターン</h3>
+
+    <ul style="list-style:none;padding:0;margin:16px 0">
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#888">×</span>SWELL以外のテーマを使い続けたい人（装飾が崩れる）</li>
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#888">×</span>1記事ずつ自分の言葉で丁寧に書きたい人（思想が合わない）</li>
+      <li style="padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted #ddd"><span style="position:absolute;left:0;color:#888">×</span>AIで書いた記事を出すこと自体に抵抗がある人</li>
+      <li style="padding:8px 0 8px 28px;position:relative"><span style="position:absolute;left:0;color:#888">×</span>WordPressブログをまだ持っていない人（まずブログを作るところから）</li>
+    </ul>
+  </div>
+</section>
+
+
 <!-- ===== FAQ ===== -->
-<section>
+<section id="faq">
   <div class="container content">
     <h2 class="section-title">よくある質問</h2>
 
     <details class="faq-item">
-      <summary>無料トライアルだけでも試せますか？</summary>
-      <div class="faq-answer">はい、7日間・5記事までクレカ登録なしで全機能を試せます。アイキャッチや図解の画像生成も含めて使えるので、まずはお試しでOKです。</div>
+      <summary>本当に1記事5分でできるんですか？</summary>
+      <div class="faq-answer">「私が手を動かしている時間」が5分です。キーワードを入れて生成ボタンを押すまでの作業のこと。生成自体はバックグラウンドで進むので、その間は別のことをしています。出来上がるまでの時間そのものは、もう少しかかります。</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>記事の最終チェックは必要ですか？</summary>
+      <div class="faq-answer">そのまま公開できる質ではありますが、最終チェックは推奨します。私はざっと読み直して、不自然な部分や事実関係だけ確認しています。だいたい1記事3〜5分くらいです。</div>
     </details>
 
     <details class="faq-item">
       <summary>SWELL以外のテーマでも使えますか？</summary>
-      <div class="faq-answer">基本機能は使えますが、ふきだしや装飾ブロックは正しく表示されない可能性があります。SWELLでの利用が前提だと考えてもらったほうが安全です。</div>
+      <div class="faq-answer">基本機能は使えますが、ふきだしや装飾ブロックは正しく表示されない可能性が高いです。SWELLを使っているか、新規ブログで使う前提のツールだと考えたほうが安全です。</div>
     </details>
 
     <details class="faq-item">
-      <summary>API料金って何？追加で払うの？</summary>
-      <div class="faq-answer">記事生成にはGoogleのGemini APIを使うため、月額料金とは別にAPI利用料がかかります。1記事あたりテキストのみで5〜40円、フル画像でも60〜100円程度。Gemini APIキーの取得は3分ほどで自分で行います。</div>
+      <summary>楽天アフィリ以外のASPにも対応してますか？</summary>
+      <div class="faq-answer">楽天トラベル・楽天市場・もしもアフィリエイトのほか、独自ASPリンクも登録できます。私は楽天系をメインに使っていますが、もしもの登録もしています。</div>
     </details>
 
     <details class="faq-item">
-      <summary>解約はカンタンにできますか？</summary>
-      <div class="faq-answer">いつでもワンクリックで解約できます。日割り返金はないですが、解約後もデータは残るので、また使いたくなったら再開もできます。</div>
+      <summary>API料金って結局いくらかかるんですか？</summary>
+      <div class="faq-answer">Gemini APIを自分で契約する形なので、使った分だけかかります。私の体感だと、フル画像でも1記事60〜100円。月50記事で7,000円前後です。月額料金（Pro：2,980円）と合わせて月1万円ちょっとが私の支出です。</div>
     </details>
 
     <details class="faq-item">
-      <summary>WordPressの設定が苦手なんですが大丈夫？</summary>
-      <div class="faq-answer">有料プラン契約者には「WordPress接続代行」が無料でついています。サイト連携・アプリパスワード発行・投稿テストまで、スタッフが代行してくれるので、設定が苦手な方でも安心です。</div>
+      <summary>無料で試せますか？</summary>
+      <div class="faq-answer">7日間・5記事まで、クレジットカード登録なしで全機能を試せます。私もまずモニターで触り始めて、「これはいい」と判断してから有料プランに切り替えました。同じ流れで試してみるのがおすすめです。</div>
     </details>
 
     <details class="faq-item">
-      <summary>AI記事ってGoogleペナルティが心配…</summary>
-      <div class="faq-answer">競合分析で他サイトとの差別化ポイントを自動で抽出する仕組みになっています。さらにナレッジ機能で自分の体験や知識を反映できるので、ありがちなAI記事とは別物に仕上げられます。とはいえ最終確認は自分でやったほうがいいです。</div>
-    </details>
-
-    <details class="faq-item">
-      <summary>どのプランから始めればいい？</summary>
-      <div class="faq-answer">まず7日間の無料トライアルで試して、続けられそうならProが一番バランスがいいと思います。複数サイト運営・ナレッジ20個・分析機能まで揃って月2,980円なので。週3〜4本でいい方はStarterで十分です。</div>
+      <summary>解約は簡単ですか？</summary>
+      <div class="faq-answer">ワンクリックで解約できます。日割り返金はないので、月の頭で解約するのがお得です。データは解約後も残るので、また使いたくなったら再開もできます。</div>
     </details>
   </div>
 </section>
 
+
 <!-- ===== まとめ ===== -->
-<section>
+<section id="summary">
   <div class="container content">
     <h2 class="section-title">まとめ</h2>
 
-    <p>AI維新Writerを半年使ってみて、いちばん感じているのは<strong>「ブログ運営の常識が変わった」</strong>ということです。</p>
+    <p>半年使ってみての結論を、シンプルに書きます。</p>
 
-    <p>これまでの「1記事ずつ丁寧に書く」スタイルから、「キーワード設計と最終チェックに集中して、生成は任せる」スタイルへ。仕組みで回せる部分を仕組み化することで、本当にやりたい戦略や分析に時間を使えるようになりました。</p>
+    <p><strong>SWELLを使っていて、ChatGPTで記事を書くのに疲れている人なら、試して損はないツール</strong>です。</p>
 
-    <p>SWELL以外のテーマだと表示崩れの可能性がある点だけは要注意ですが、<strong>SWELLユーザーで、ブログ作業を減らしたい方には、本気でおすすめできるツール</strong>です。</p>
+    <p>私の場合、GPTsで1記事1時間かかっていた作業が5分に短縮できて、楽天トラベル系の記事は5記事試した時点で「これはイケる」と判断しました。</p>
 
-    <div class="highlight-box">
-      <strong>🎁 今だけ：先着200名限定の初期価格</strong>
-      <p style="margin-top:8px">Starter ¥980 / Pro ¥2,980 / Business ¥9,800。この価格は、200名到達後に改定予定です。今のうちに登録しておけば、改定後もずっとこの価格で使い続けられます。こういう初期価格って「あとで見よう」と思っているうちに普通に終わっていることが多いので、気になる方は早めにチェックしておくのが安心です。</p>
+    <p>絶賛するつもりはなくて、SWELL以外のテーマでは装飾が崩れる可能性があったり、最終チェックは結局自分でやる必要があったり、注意点もちゃんとあります。</p>
+
+    <p>でも、<strong>「自分が手を動かす時間を減らしたい」という目的に対しては、これ以上ないくらい応えてくれるツール</strong>でした。</p>
+
+    <h3>無料で試せるので、まずは触ってみるのが正解</h3>
+
+    <p>こういうツールは、<strong>使ってみないと自分に合うかわからない</strong>ものです。</p>
+
+    <p>幸い、AI維新Writerは7日間・5記事まで、クレカ登録なしで全機能を試せます。私もモニターで触ってから判断したので、同じように試してから決めるのがいいと思います。</p>
+
+    <div class="note-quote">
+      <strong>🎁 補足：先着200名限定の初期価格について</strong>
+      <p style="margin-top:6px">現在、先着200名限定で初期価格（Starter ¥980 / Pro ¥2,980 / Business ¥9,800）で提供されています。200名到達後は価格改定予定とのことで、今登録すれば改定後もこの価格が維持されるそうです。気になる方は早めに無料トライアルだけでも試しておくと安心です。</p>
     </div>
 
     <div class="cta-wrapper">
       <a href="https://ai-ishin-writer.com/lp?ref=6mjd9284" class="cta-button" target="_blank" rel="noopener">
-        7日間 無料トライアルを始める →
+        AI維新Writerの無料トライアルを見る →
       </a>
       <span class="cta-note">クレカ不要 / 5記事まで全機能 / いつでも解約OK</span>
     </div>
 
     <p style="text-align:center;margin-top:36px;font-size:14px;color:var(--color-text-soft)">
-      最後まで読んでいただき、ありがとうございました。<br>
-      迷ったらまずは無料で触ってみてくださいね。
+      最後まで読んでいただき、ありがとうございました。
     </p>
   </div>
 </section>
 
+
 <footer>
   <p>© まっぽんのブログ運営記</p>
-  <p class="pr-note">※ 本ページはアフィリエイトリンク（PR）を含みます。<br>記載内容は2026年4月時点の情報に基づきます。</p>
+  <p class="pr-note">※ 本ページはアフィリエイトリンク（PR）を含みます。<br>記載内容は2026年4月時点の筆者の体験に基づきます。<br>料金や仕様は変更される可能性があるため、最新情報は公式サイトでご確認ください。</p>
 </footer>
 
 </body>
